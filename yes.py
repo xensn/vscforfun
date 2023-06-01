@@ -35,36 +35,37 @@ def trans(plaintext,key,column):
             continue
 
     
-    print(key_list)
-    print(new_key_list)
+    
     
     for i in range(len(key_list)):
         if new_key_list[i] != key_list[i]:
+
             value = ord(new_key_list[i])
             letter = chr(value+1)
-            key_list.append(letter)
+            key_list.insert(new_key_list.index(key_list[i-1])+1,letter)
             break
         else:
             continue
     
-    key_list.sort()
-    print(key_list)
+    
+    
     count = 0
     
     # Add into dictionary
     
     for i in key_list:
-        print(i)
+        
         for j in range(0,len(plaintext),len(key)):
             column += plaintext[j+count]  
-            print(column)
-            
-        
+                    
         x[i] = column
-        print(x)
         column = ''
         count += 1
+    
+
     answer = ''
+    key_list.sort()
+    
     for i in key_list:
         answer += x[i] + ' '
 
